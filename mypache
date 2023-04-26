@@ -1,0 +1,13 @@
+#!/bin/sh
+if [ $# != 1 ]
+then
+        print "USAGE: $0 arg"
+        print "arg: start"
+        print "arg: stop"
+        exit
+fi
+
+echo "$1ing mysql..."
+sudo systemctl $1 mysql.service
+echo "$1ing apache..."
+sudo systemctl $1 apache2.service

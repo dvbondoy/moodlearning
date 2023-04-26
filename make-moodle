@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# != 1 ]
+then
+        print "USAGE: $0 arg"
+        print "arg: writable"
+        print "arg: unwritable"
+        exit
+fi
+
+if [ $1 == "writable" ]
+then
+	echo "moodle is now writable"
+	sudo chmod -R 777 /var/www/html/moodle
+elif [ $1 == "unwritable" ]
+then
+	echo "moodle is now secured"
+	sudo chmod -R 0755 /var/www/html/moodle
+fi
