@@ -13,7 +13,7 @@ class block_mybadges extends block_base {
             return $this->content;
         }
 
-        // $badges = badges_get_user_badges($USER->id);
+        $badges = badges_get_user_badges($USER->id);
         //$badges = core_badges_get_user_badges($USER->id);
         
 
