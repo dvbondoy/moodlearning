@@ -13,7 +13,7 @@ class block_mybadges extends block_base {
             return $this->content;
         }
 
-        $badges = badge_get_user_badges($USER->id);
+        // $badges = badges_get_user_badges($USER->id);
         //$badges = core_badges_get_user_badges($USER->id);
         
 
@@ -21,17 +21,22 @@ class block_mybadges extends block_base {
             $this->content = new stdClass;
             $this->content->text = get_string('nobadges', 'block_mybadges');
             return $this->content;
+        } else {
+        	$this->content = new stdClass;
+	        $this->content->text = '';
+
+            $output = $this->page->get_renderer('core', 'badges');
+            $this->content->text = $output->print_badges_list($badges, $USER->id, true);
         }
 
-        $this->content = new stdClass;
-        $this->content->text = '<ul>';
+        // $this->content->text = '<ul>';
 
-        foreach ($badges as $badge) {
-            $badgeurl = new moodle_url($CFG->wwwroot.'/badges/view.php?badgeid='.$badge->id);
-            $this->content->text .= '<li><a href="'.$badgeurl.'">'.$badge->name.'</a></li>';
-        }
+        // foreach ($badges as $badge) {
+        //     $badgeurl = new moodle_url($CFG->wwwroot.'/badges/view.php?badgeid='.$badge->id);
+        //     $this->content->text .= '<li><a href="'.$badgeurl.'">'.$badge->name.'</a></li>';
+        // }
 
-        $this->content->text .= '</ul>';
+        // $this->content->text .= '</ul>';
         $this->content->footer = '';
 
         return $this->content;
